@@ -9,19 +9,18 @@
 #include <map>
 #include <list>
 #include <string>
-#include <string_view> 
 #include <algorithm>
 
 int main() {
 
     // stores aChain and int pairs for known genes
-    std::map<std::string_view, int> aChain = {{"ALA", 1}, {"ARG", 2}, {"ASN", 3}, {"ASP", 4}, {"CYS", 5}, {"GLN", 6}, 
+    std::map<std::string, int> aChain = {{"ALA", 1}, {"ARG", 2}, {"ASN", 3}, {"ASP", 4}, {"CYS", 5}, {"GLN", 6}, 
                                               {"GLU", 6}, {"GLY", 7}, {"HIS", 8}, {"ILE", 9}, {"LEU", 10}, {"LYS", 11},
                                               {"MET", 12}, {"PHE", 13}, {"PRO", 14}, {"SER", 15}, {"THR", 16}, {"TRP", 17},
                                               {"TYR", 16}, {"VAL", 17}};
     
     // stores full name of amino acid using name and aChain pair
-    std::list<std::pair<std::string_view, std::string_view>> aminoAcids = {
+    std::list<std::pair<std::string, std::string>> aminoAcids = {
         {"ALA", "Alanine"}, {"ARG", "Arginine"}, {"ASN", "Asparagine"},
         {"ASP", "Aspartic Acid"}, {"CYS", "Cysteine"}, {"GLN", "Glutamine"},
         {"GLU", "Glutamic Acid"}, {"GLY", "Glycine"}, {"HIS", "Histidine"},
