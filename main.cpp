@@ -8,7 +8,9 @@
 #include <iostream>
 #include <map>
 #include <list>
+#include <string>
 #include <string_view> 
+#include <algorithm>
 
 int main() {
 
@@ -28,6 +30,35 @@ int main() {
         {"SER", "Serine"}, {"THR", "Threonine"}, {"TRP", "Tryptophan"}, 
         {"TYR", "Tyrosine"}, {"VAL", "Valine"}
     };
+
+    // UI for gene entering
+    std::string input;
+    std::cout << "Enter a codon or exit to quit: ";
+    while (std::cin >> input && input != "exit") {
+
+        // check for invalid entry
+        while (input.length() != 3) {
+            std::cout << "Error. Codon should have exactly 3 letters.\n";
+            std::cout << "Enter another codon or 'exit': ";
+            std::cin >> input;
+        }
+
+        // make input uppercase
+        transform(input.begin(), input.end(), input.begin(), ::toupper);
+
+        // search for codon
+        if (aChain.find(input) == aChain.end()) {
+            std::cout << "\nMutation Found. Codon " << input << " does not exist.\n";
+        } else {
+            for (auto pair : aminoAcids) {
+                if (pair.first == input) {
+                    std::cout << "\nCodon " << input << " found. Full name is: " << pair.second << '\n';
+                }
+            }
+        }
+
+        std::cout << "Enter another codon or 'exit': ";
+    }
 
     return 0;
 }
