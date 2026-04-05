@@ -37,17 +37,20 @@ int main() {
     // UI for gene entering
     std::string input;
     std::cout << "Enter a codon or exit to quit: ";
-    while (std::cin >> input && input != "exit") {
+    while (std::cin >> input) {
 
+        // make input uppercase
+        transform(input.begin(), input.end(), input.begin(), ::toupper);
+
+        // check for exit
+        if (input == "EXIT") break;
+        
         // check for invalid entry
         if (input.length() != 3) {
             std::cout << "Error. Codon should have exactly 3 letters.\n";
             std::cout << "Enter another codon or 'exit': ";
             continue;
         }
-
-        // make input uppercase
-        transform(input.begin(), input.end(), input.begin(), ::toupper);
 
         // search for codon
         if (aChain.find(input) == aChain.end()) {
