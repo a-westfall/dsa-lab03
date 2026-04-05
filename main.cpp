@@ -40,11 +40,10 @@ int main() {
     while (std::cin >> input && input != "exit") {
 
         // check for invalid entry
-        while (input.length() != 3) {
+        if (input.length() != 3) {
             std::cout << "Error. Codon should have exactly 3 letters.\n";
             std::cout << "Enter another codon or 'exit': ";
-            std::cin >> input;
-            if (input == "exit") break;
+            continue;
         }
 
         // make input uppercase
