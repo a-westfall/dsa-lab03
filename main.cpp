@@ -14,10 +14,14 @@
 int main() {
 
     // stores aChain and int pairs for known genes
-    std::map<std::string, int> aChain = {{"ALA", 1}, {"ARG", 2}, {"ASN", 3}, {"ASP", 4}, {"CYS", 5}, {"GLN", 6}, 
-                                              {"GLU", 6}, {"GLY", 7}, {"HIS", 8}, {"ILE", 9}, {"LEU", 10}, {"LYS", 11},
-                                              {"MET", 12}, {"PHE", 13}, {"PRO", 14}, {"SER", 15}, {"THR", 16}, {"TRP", 17},
-                                              {"TYR", 16}, {"VAL", 17}};
+    std::map<std::string, int> aChain;
+    // load aChains into map
+    for (auto& codon : {"GLY","ILE","VAL","GLU","GLN","CYS","CYS","ALA",
+                     "SER","VAL","CYS","SER","LEU","TYR","GLN","LEU",
+                     "GLU","ASN","TYR","CYS","ASN"}) {
+
+        aChain[codon]++;
+    }
     
     // stores full name of amino acid using name and aChain pair
     std::list<std::pair<std::string, std::string>> aminoAcids = {
@@ -40,6 +44,7 @@ int main() {
             std::cout << "Error. Codon should have exactly 3 letters.\n";
             std::cout << "Enter another codon or 'exit': ";
             std::cin >> input;
+            if (input == "exit") break;
         }
 
         // make input uppercase
@@ -49,7 +54,7 @@ int main() {
         if (aChain.find(input) == aChain.end()) {
             std::cout << "\nMutation Found. Codon " << input << " does not exist.\n";
         } else {
-            for (auto pair : aminoAcids) {
+            for (const auto& pair : aminoAcids) {
                 if (pair.first == input) {
                     std::cout << "\nCodon " << input << " found. Full name is: " << pair.second << '\n';
                 }
